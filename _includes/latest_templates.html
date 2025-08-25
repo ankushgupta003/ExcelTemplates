@@ -1,0 +1,29 @@
+<section id="templates" class="my-5 py-5">
+  <h2 class="text-center fw-bold mb-5 text-primary">Featured Templates</h2>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    {% for template in site.templates %}
+    <div class="col">
+      <div
+        class="card bg-dark-card border-0 rounded-4 shadow-lg p-3 template-card"
+      >
+        <img
+          src="{{ template.image | relative_url }}"
+          class="card-img-top rounded-3"
+          alt="{{ template.title }} Template"
+        />
+        <div class="card-body">
+          <h5 class="card-title fw-bold text-light">{{ template.title }}</h5>
+          <p class="card-text text-muted">
+            {{ template.description | strip_html | truncate: 150 }}
+          </p>
+          <a
+            href="{{ site.baseurl }}{{ template.url }}"
+            class="btn btn-outline-secondary rounded-pill px-4 mt-2"
+            >View Details</a
+          >
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

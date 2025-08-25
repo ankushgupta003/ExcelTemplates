@@ -1,0 +1,86 @@
+---
+layout: default
+title: Home
+image: /images/ExcelTemplates.png
+---
+
+<div class="container py-5">
+  <!-- Hero Section -->
+  <div class="text-center py-5 hero-section">
+    <h1 class="display-3 fw-bold text-primary animate__fadeInUp">
+      Master Your Workflow
+    </h1>
+    <p
+      class="lead mt-4 text-muted mx-auto animate__fadeInUp"
+      style="max-width: 700px"
+    >
+      Professional-grade Google Sheets templates designed to supercharge your
+      productivity and organization.
+    </p>
+    <a
+      href="#templates"
+      class="btn btn-primary btn-lg mt-4 px-5 rounded-pill shadow-lg animate__fadeInUp"
+    >
+      Explore Templates
+    </a>
+  </div>
+
+  <!-- Templates Section -->
+  {% include latest_templates.html%}
+
+  <!-- Testimonials Section -->
+  <section
+    class="my-5 py-5 text-center bg-dark-card rounded-4 shadow-lg animate__fadeIn"
+  >
+    <h2 class="fw-bold mb-4 text-primary">What People Are Saying</h2>
+    <div
+      id="testimonialCarousel"
+      class="carousel slide"
+      data-bs-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <blockquote class="blockquote px-5">
+            <p class="lead text-light mb-3">
+              "SheetForge's templates are a game-changer. They're beautifully
+              designed and save me hours every week."
+            </p>
+            <footer class="blockquote-footer text-muted">
+              Alex M., <cite title="Source Title">Productivity Consultant</cite>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="carousel-item">
+          <blockquote class="blockquote px-5">
+            <p class="lead text-light mb-3">
+              "The financial planner is incredibly intuitive. I finally have a
+              clear picture of my money."
+            </p>
+            <footer class="blockquote-footer text-muted">
+              Sarah P., <cite title="Source Title">Small Business Owner</cite>
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#testimonialCarousel"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#testimonialCarousel"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </section>
+  {% include cta.html %}
+</div>

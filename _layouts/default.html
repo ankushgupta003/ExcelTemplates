@@ -39,5 +39,13 @@
       xintegrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
+    <script>
+      // This script will check if the URL contains a Netlify Identity token and redirect
+      // the user to the correct admin page.
+      if (window.location.hash.includes("_token=")) {
+        window.location.href =
+          window.location.origin + "/admin/" + window.location.hash;
+      }
+    </script>
   </body>
 </html>

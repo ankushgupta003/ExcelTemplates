@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master # This is usually your main branch, e.g., main or master
+  branch: main # This is usually your main branch, e.g., main or master
 
 media_folder: "/images/blog" # Folder to upload images to
 public_folder: "/images/blog" # The public path to the images

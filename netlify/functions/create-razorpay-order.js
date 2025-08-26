@@ -1,11 +1,5 @@
-// A Netlify Function to create a Razorpay order securely.
+// A Netlify Function to create a Razorpay order securely using a direct API call.
 // This file should be placed in the `netlify/functions/` directory.
-
-const Razorpay = require("razorpay");
-
-// Ensure you have configured your environment variables in Netlify
-// Process.env.RAZORPAY_KEY_ID
-// Process.env.RAZORPAY_KEY_SECRET
 
 exports.handler = async (event) => {
   // Only allow POST requests
@@ -29,26 +23,50 @@ exports.handler = async (event) => {
       };
     }
 
-    // Initialize Razorpay with your secret key
-    const instance = new Razorpay({
-      key_id: process.env.RAZORPAY_KEY_ID,
-      key_secret: process.env.RAZORPAY_KEY_SECRET,
-    });
+    // 🚨 ADDED LOGGING: Check if environment variables are present
+    console.log(
+      "RAZORPAY_KEY_ID:",
+      process.env.RAZORPAY_KEY_ID ? "Found" : "Not Found"
+    );
+    console.log(
+      "RAZORPAY_KEY_SECRET:",
+      process.env.RAZORPAY_KEY_SECRET ? "Found" : "Not Found"
+    );
 
-    const options = {
-      amount: amount, // amount in the smallest currency unit (e.g., paisa)
+    // Construct the authorization header
+    const auth = Buffer.from(
+      `${process.env.RAZORPAY_KEY_ID}:${process.env.RAZORPAY_KEY_SECRET}`
+    ).toString("base64");
+
+    const orderData = {
+      amount: amount,
       currency: "INR",
-      receipt: "receipt_order_" + Math.floor(Math.random() * 100000), // Unique receipt
+      receipt: "receipt_order_" + Math.floor(Math.random() * 100000),
       notes: {
         product_name: product_name,
-        // You can add other notes here, like customer ID
       },
     };
 
-    // Create the order on the Razorpay server
-    const order = await instance.orders.create(options);
+    const response = await fetch("https://api.razorpay.com/v1/orders", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Basic ${auth}`,
+      },
+      body: JSON.stringify(orderData),
+    });
 
-    // Return the order details to the client
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Razorpay API Error:", errorText);
+      return {
+        statusCode: response.status,
+        body: JSON.stringify({ error: `Razorpay API Error: ${errorText}` }),
+      };
+    }
+
+    const order = await response.json();
+
     return {
       statusCode: 200,
       body: JSON.stringify(order),

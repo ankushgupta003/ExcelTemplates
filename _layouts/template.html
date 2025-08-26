@@ -43,10 +43,10 @@
         </div>
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold text-primary">{{ page.title }}</h1>
-          <p class="lead mt-4 text-muted">{{ page.description }}</p>
+          <p class="lead mt-4">{{ page.description }}</p>
           <div class="mt-4">
             <h5 class="fw-bold text-light">Key Features:</h5>
-            <ul class="list-unstyled text-muted mt-3">
+            <ul class="list-unstyled mt-3">
               {% for feature in page.features %}
               <li>
                 <i class="fas fa-check-circle text-primary me-2"></i> {{ feature
@@ -100,9 +100,7 @@
                   class="card bg-dark-card border-0 rounded-4 shadow-lg h-100 p-4"
                 >
                   <div class="card-body">
-                    <p class="card-text text-muted">
-                      {{ screenshot.description }}
-                    </p>
+                    <p class="card-text">{{ screenshot.description }}</p>
                   </div>
                 </div>
               </div>
@@ -179,7 +177,7 @@
               <h5 class="card-title fw-bold text-light">
                 {{ template.title }}
               </h5>
-              <p class="card-text text-muted">
+              <p class="card-text">
                 {{ template.description | strip_html | truncate: 150 }}
               </p>
               <a

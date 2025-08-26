@@ -1,13 +1,8 @@
----
-layout: default
-title: Templates
----
-
-<div class="container py-5">
+<div class="container py-5" id="templates">
   <h1 class="display-4 fw-bold text-center text-primary mb-5">Top Templates</h1>
   <div class="row g-4">
     {% for template in site.templates %}
-    <div class="col-md-6 col-lg-4">
+    <div class="col-md-6 col-lg-3">
       <div
         class="card bg-dark-card border-0 rounded-4 shadow-lg p-3 h-100 blog-card"
       >
@@ -17,8 +12,8 @@ title: Templates
           alt="{{ template.title }} Template"
         />
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-bold text-light">{{ template.title }}</h5>
-          <p class="card-text text-muted">
+          <h5 class="card-title fw-bold text-primary">{{ template.title }}</h5>
+          <p class="card-text">
             {{ template.description | strip_html | truncate: 150 }}
           </p>
           <a

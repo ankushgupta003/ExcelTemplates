@@ -34,11 +34,11 @@ body::before {
 
 /* Custom color palette */
 :root {
-  --primary: #1a237e; /* A deep indigo blue */
-  --accent: #4fc3f7; /* A vibrant sky blue for glowing effects */
-  --dark-bg: #0f141a; /* A deep navy charcoal background */
-  --dark-subtle: #1c242c; /* A slightly lighter shade for borders/subtle elements */
-  --: #a3aab1; /* Light gray for muted text */
+  --primary: #6a11cb; /* A deep purple */
+  --accent: #2575fc; /* A vibrant blue for glowing effects */
+  --dark-bg: #0d1117; /* Deep charcoal background */
+  --dark-subtle: #161b22; /* A slightly lighter shade for borders/subtle elements */
+  --text-muted: #8b949e; /* Light gray for muted text */
 }
 
 /* Bootstrap overrides and custom styles */
@@ -55,39 +55,42 @@ body::before {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
-
 .text-primary {
   color: var(--accent) !important;
-  text-shadow: 0 0 8px rgba(79, 195, 247, 0.5); /* Subtle glowing text effect */
+  text-shadow: -0.4px 1.1px 0px rgba(255, 255, 255, 1); /* Subtle glowing text effect */
+}
+.text-primary #typing-text {
+  color: var(--accent) !important;
+  text-shadow: -3px 4px 8px rgba(0, 0, 0, 1); /* Subtle glowing text effect */
 }
 
 .btn-primary {
-  background-color: var(--primary);
-  border-color: var(--primary);
+  background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+  border-color: #6a11cb;
   color: #fff !important;
   font-weight: 600;
   transition: all 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 0 10px rgba(79, 195, 247, 0.4); /* Initial subtle glow */
+  box-shadow: 0 0 10px rgba(37, 117, 252, 0.4); /* Initial subtle glow */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
 .btn-primary:hover {
-  background-color: #151b68;
-  border-color: #151b68;
+  background: linear-gradient(45deg, #2575fc 0%, #6a11cb 100%);
+  border-color: #2575fc;
   transform: translateY(-2px);
-  box-shadow: 0 5px 20px rgba(79, 195, 247, 0.7),
-    0 0 30px rgba(79, 195, 247, 0.5); /* Stronger glow on hover */
+  box-shadow: 0 5px 20px rgba(37, 117, 252, 0.7),
+    0 0 30px rgba(37, 117, 252, 0.5); /* Stronger glow on hover */
 }
 
 .btn-outline-secondary {
-  border-color: var(--);
-  color: var(--);
+  border-color: var(--text-muted);
+  color: var(--text-muted);
   transition: all 0.3s ease;
 }
 
 .btn-outline-secondary:hover {
-  background-color: var(--);
+  background-color: var(--text-muted);
   color: var(--dark-card) !important;
 }
 
@@ -97,20 +100,20 @@ body::before {
   background-color: rgba(31, 36, 44, 0.5) !important;
   border: 1px solid rgba(22, 27, 34, 0.7) !important;
   border-radius: 8px;
-  color: #fff;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  color: #fff;
 }
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(79, 195, 247, 0.2) !important; /* Subtle glow on card hover */
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(37, 117, 252, 0.2) !important; /* Subtle glow on card hover */
 }
 
 /* Navbar and header styles */
 .navbar-nav .nav-link {
   font-weight: 500;
-  color: var(--);
+  color: var(--text-muted);
   transition: color 0.3s ease;
 }
 
@@ -124,9 +127,4 @@ body::before {
 
 .navbar-brand:hover {
   transform: scale(1.05);
-}
-
-/* Custom Font Awesome icons color */
-.text-primary {
-  color: var(--accent) !important;
 }

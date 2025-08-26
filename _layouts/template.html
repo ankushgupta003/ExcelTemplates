@@ -56,11 +56,12 @@
             </ul>
           </div>
           <div class="mt-5">
-            <a
-              href="#"
+            <button
+              id="rzp-button"
               class="btn btn-primary btn-lg rounded-pill px-5 fw-bold shadow-lg"
-              >Purchase Now - Rs.{{ page.price }}</a
             >
+              Purchase Now - Rs.{{ page.price }}
+            </button>
             <a
               href="{{ site.baseurl }}/#contact"
               class="btn btn-outline-secondary btn-lg rounded-pill px-5 fw-bold ms-3"
@@ -192,9 +193,87 @@
       </div>
     </div>
 
+    <!-- Razorpay Checkout Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+      document.getElementById("rzp-button").onclick = function (e) {
+        // Updated backend URL for Netlify Function
+        const backendUrl = "/.netlify/functions/create-razorpay-order";
+        // Get the price from the Jekyll variable and convert it to paisa
+        const price = "{{ page.price }}" * 100;
+        const name = "{{ page.title }}";
+
+        fetch(backendUrl, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            amount: price,
+            product_name: name,
+          }),
+        })
+          .then((response) => response.json())
+          .then((order) => {
+            if (order.id) {
+              const options = {
+                key: "YOUR_RAZORPAY_KEY_ID", // Replace with your actual Razorpay Key ID
+                amount: order.amount,
+                currency: "INR", // Change to USD or other currency if needed
+                name: "The Sheet Vault",
+                description: name,
+                order_id: order.id,
+                handler: function (response) {
+                  // This is where you would call another backend endpoint to verify the payment and send the sheet URL
+                  const verifyUrl = "/.netlify/functions/verify-payment";
+                  fetch(verifyUrl, {
+                    method: "POST",
+                    headers: {
+                      "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                      razorpay_order_id: response.razorpay_order_id,
+                      razorpay_payment_id: response.razorpay_payment_id,
+                      razorpay_signature: response.razorpay_signature,
+                      product_name: name,
+                    }),
+                  })
+                    .then((res) => res.json())
+                    .then((data) => {
+                      if (data.success) {
+                        // Payment verified. Show a success message or redirect.
+                        alert(
+                          "Payment verified. A link to your template has been sent to your email!"
+                        );
+                      } else {
+                        alert(
+                          "Payment verification failed. Please contact support."
+                        );
+                      }
+                    });
+                },
+                prefill: {
+                  name: "Your Name", // Customer Name
+                  email: "customer@example.com", // Customer Email
+                },
+              };
+              const rzp1 = new Razorpay(options);
+              rzp1.open();
+            } else {
+              alert("Failed to create order. Please try again later.");
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+            alert("An error occurred. Please try again.");
+          });
+
+        e.preventDefault();
+      };
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      xintegrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
       crossorigin="anonymous"
     ></script>
   </body>

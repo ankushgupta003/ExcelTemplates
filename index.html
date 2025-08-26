@@ -57,102 +57,13 @@ image: /images/ExcelTemplates.png
 {% include templates.html%}
 
 <!-- Testimonials Section -->
-<section id="testimonials-section" class="my-5 py-5 text-center">
-  <div class="container bg-dark-card rounded-4 shadow-lg animate__fadeIn">
-    <h2 class="fw-bold mb-4 text-primary">What People Are Saying</h2>
-    <div
-      id="testimonialCarousel"
-      class="carousel slide"
-      data-bs-ride="carousel"
-    >
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <blockquote class="blockquote px-5">
-            <p class="lead text-light mb-3">
-              "SheetForge's templates are a game-changer. They're beautifully
-              designed and save me hours every week."
-            </p>
-            <footer class="blockquote-footer">
-              Alex M., <cite title="Source Title">Productivity Consultant</cite>
-            </footer>
-          </blockquote>
-        </div>
-        <div class="carousel-item">
-          <blockquote class="blockquote px-5">
-            <p class="lead text-light mb-3">
-              "The financial planner is incredibly intuitive. I finally have a
-              clear picture of my money."
-            </p>
-            <footer class="blockquote-footer">
-              Sarah P., <cite title="Source Title">Small Business Owner</cite>
-            </footer>
-          </blockquote>
-        </div>
-        <div class="carousel-item">
-          <blockquote class="blockquote px-5">
-            <p class="lead text-light mb-3">
-              "The customer relationship tracker is perfect for my small
-              business. It has helped me stay on top of all my clients."
-            </p>
-            <footer class="blockquote-footer">
-              Jane D., <cite title="Source Title">Freelance Designer</cite>
-            </footer>
-          </blockquote>
-        </div>
-      </div>
-      <button
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#testimonialCarousel"
-        data-bs-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#testimonialCarousel"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  </div>
+<section id="testimonials-section" class="text-center">
+  {%include testimonial.html%}
 </section>
 
 <!-- Latest News/Blog Section -->
-<section id="news-section" class="container my-5 py-5 text-center">
-  <h2 class="fw-bold mb-4 text-primary animate__fadeInUp">Latest News</h2>
-  <div class="row g-4">
-    <div class="col-md-6">
-      <div class="card p-4 h-100 text-start">
-        <h4 class="fw-bold text-light">
-          5 Ways to Boost Your Productivity with Templates
-        </h4>
-        <p class="mb-2">October 26, 2024</p>
-        <p class=" ">
-          Learn how to use our templates to save time and streamline your daily
-          tasks.
-        </p>
-        <a href="#" class="btn btn-primary mt-auto">Read More</a>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card p-4 h-100 text-start">
-        <h4 class="fw-bold text-light">
-          New Financial Planner Template Now Available!
-        </h4>
-        <p class="mb-2">October 20, 2024</p>
-        <p class=" ">
-          We're excited to announce the launch of our most requested template
-          yet!
-        </p>
-        <a href="#" class="btn btn-primary mt-auto">Read More</a>
-      </div>
-    </div>
-  </div>
+<section id="news-section" class="container">
+  {%include latest-blogs.html%}
 </section>
 
 <!-- Call to Action Section -->

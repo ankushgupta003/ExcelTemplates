@@ -196,79 +196,87 @@
     <!-- Razorpay Checkout Script -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-      document.getElementById("rzp-button").onclick = function (e) {
-        // Updated backend URL for Netlify Function
-        const backendUrl = "/.netlify/functions/create-razorpay-order";
-        // Get the price from the Jekyll variable and convert it to paisa
-        const price = "{{ page.price }}" * 100;
-        const name = "{{ page.title }}";
+      document.getElementById('rzp-button').onclick = function(e) {
+          // Updated backend URL for Netlify Function
+          const backendUrl = "/.netlify/functions/create-razorpay-order";
+          // Get the price from the Jekyll variable and convert it to paisa
+          const price = {{ page.price }} * 100;
+          const name = "{{ page.title }}";
 
-        fetch(backendUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            amount: price,
-            product_name: name,
-          }),
-        })
-          .then((response) => response.json())
-          .then((order) => {
-            if (order.id) {
-              const options = {
-                key: "rzp_test_RA1jsPMnUvgjSe", // Replace with your actual Razorpay Key ID
-                amount: order.amount,
-                currency: "INR", // Change to USD or other currency if needed
-                name: "The Sheet Vault",
-                description: name,
-                order_id: order.id,
-                handler: function (response) {
-                  // This is where you would call another backend endpoint to verify the payment and send the sheet URL
-                  const verifyUrl = "/.netlify/functions/verify-payment";
-                  fetch(verifyUrl, {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                      razorpay_order_id: response.razorpay_order_id,
-                      razorpay_payment_id: response.razorpay_payment_id,
-                      razorpay_signature: response.razorpay_signature,
-                      product_name: name,
-                    }),
-                  })
-                    .then((res) => res.json())
-                    .then((data) => {
-                      if (data.success) {
-                        // Payment verified. Show a success message or redirect.
-                        alert(
-                          "Payment verified. A link to your template has been sent to your email!"
-                        );
-                      } else {
-                        alert(
-                          "Payment verification failed. Please contact support."
-                        );
-                      }
-                    });
-                },
-                prefill: {
-                  name: "Your Name", // Customer Name
-                  email: "customer@example.com", // Customer Email
-                },
-              };
-              const rzp1 = new Razorpay(options);
-              rzp1.open();
-            } else {
-              alert("Failed to create order. Please try again later.");
-            }
+          // Log the payload to the console before sending
+          console.log("Sending payload to backend:", { amount: price, product_name: name });
+
+          fetch(backendUrl, {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                  amount: price,
+                  product_name: name
+              }),
           })
-          .catch((error) => {
-            console.error("Error:", error);
-            alert("An error occurred. Please try again.");
+          .then(response => {
+              if (!response.ok) {
+                  // Log the response text if the request was not successful
+                  return response.text().then(text => {
+                      console.error("Backend Error:", text);
+                      throw new Error("HTTP error " + response.status + ": " + text);
+                  });
+              }
+              return response.json();
+          })
+          .then(order => {
+              if (order.id) {
+                  const options = {
+                      "key": "rzp_test_RA1jsPMnUvgjSe", // Replace with your actual Razorpay Key ID
+                      "amount": order.amount,
+                      "currency": "INR", // Change to USD or other currency if needed
+                      "name": "The Sheet Vault",
+                      "description": name,
+                      "order_id": order.id,
+                      "handler": function (response) {
+                          // This is where you would call another backend endpoint to verify the payment and send the sheet URL
+                          const verifyUrl = "/.netlify/functions/verify-payment";
+                          fetch(verifyUrl, {
+                              method: 'POST',
+                              headers: {
+                                  'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                  razorpay_order_id: response.razorpay_order_id,
+                                  razorpay_payment_id: response.razorpay_payment_id,
+                                  razorpay_signature: response.razorpay_signature,
+                                  product_name: name
+                              }),
+                          })
+                          .then(res => res.json())
+                          .then(data => {
+                              if (data.success) {
+                                  // Payment verified. Show a success message or redirect.
+                                  alert("Payment verified. A link to your template has been sent to your email!");
+                              } else {
+                                  alert("Payment verification failed. Please contact support.");
+                              }
+                          });
+                      },
+                      "prefill": {
+                          "name": "Your Name", // Customer Name
+                          "email": "customer@example.com" // Customer Email
+                      }
+                  };
+                  const rzp1 = new Razorpay(options);
+                  rzp1.open();
+              } else {
+                  alert("Failed to create order. Please try again later.");
+              }
+          })
+          .catch(error => {
+              console.error('An error occurred:', error);
+              alert("An error occurred. Please check the console for details.");
           });
 
-        e.preventDefault();
+          e.preventDefault();
       };
     </script>
     <script

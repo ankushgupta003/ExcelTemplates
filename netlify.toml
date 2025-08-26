@@ -2,8 +2,8 @@
 
 [build]
   # The command that Netlify will use to build your site.
-  # This runs jekyll build and then installs the npm packages for your functions.
-  command = "jekyll build && npm install"
+  # This runs jekyll build and then changes to the 'netlify' directory to install npm packages for your functions.
+  command = "jekyll build && cd netlify && npm install"
   
   # The directory that contains your built site.
   publish = "_site"

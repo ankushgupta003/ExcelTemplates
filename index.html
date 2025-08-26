@@ -4,34 +4,61 @@ title: Home
 image: /images/ExcelTemplates.png
 ---
 
-<div class="container py-5">
-  <!-- Hero Section -->
-  <div class="text-center py-5 hero-section">
+<!-- Hero Section -->
+<section
+  id="hero-section"
+  class="text-center py-5"
+  style="
+    background-image: url('https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2025/07/illustration-of-the-google-sheets-logo-floating-above-a-stylized-spreadsheet-interface-with-repeated-logo-icons-in-the-background_.png');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+
+    overflow: hidden;
+  "
+>
+  <div
+    style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(
+        13,
+        17,
+        23,
+        0.7
+      ); /* Dark semi-transparent overlay */
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      box-shadow: 0 0 40px rgba(210, 50, 193, 0.5); /* Glowing effect */
+      z-index: 1;
+    "
+  ></div>
+  <div class="container py-5" style="position: relative; z-index: 2">
     <h1 class="display-3 fw-bold text-primary animate__fadeInUp">
-      Master Your Workflow
+      <span id="typing-text">The Future of Productivity</span>
     </h1>
-    <p
-      class="lead mt-4 text-muted mx-auto animate__fadeInUp"
-      style="max-width: 700px"
-    >
+    <p class="lead mt-4 mx-auto animate__fadeInUp" style="max-width: 700px">
       Professional-grade Google Sheets templates designed to supercharge your
       productivity and organization.
     </p>
     <a
       href="#templates"
-      class="btn btn-primary btn-lg mt-4 px-5 rounded-pill shadow-lg animate__fadeInUp"
+      class="btn btn-primary btn-lg mt-4 px-5 rounded-pill shadow-lg animate__fadeInUp pulsating-glow"
     >
       Explore Templates
     </a>
   </div>
+</section>
 
-  <!-- Templates Section -->
-  {% include latest_templates.html%}
+<!-- Templates Section -->
+{% include templates.html%}
 
-  <!-- Testimonials Section -->
-  <section
-    class="my-5 py-5 text-center bg-dark-card rounded-4 shadow-lg animate__fadeIn"
-  >
+<!-- Testimonials Section -->
+<section id="testimonials-section" class="my-5 py-5 text-center">
+  <div class="container bg-dark-card rounded-4 shadow-lg animate__fadeIn">
     <h2 class="fw-bold mb-4 text-primary">What People Are Saying</h2>
     <div
       id="testimonialCarousel"
@@ -45,7 +72,7 @@ image: /images/ExcelTemplates.png
               "SheetForge's templates are a game-changer. They're beautifully
               designed and save me hours every week."
             </p>
-            <footer class="blockquote-footer text-muted">
+            <footer class="blockquote-footer">
               Alex M., <cite title="Source Title">Productivity Consultant</cite>
             </footer>
           </blockquote>
@@ -56,8 +83,19 @@ image: /images/ExcelTemplates.png
               "The financial planner is incredibly intuitive. I finally have a
               clear picture of my money."
             </p>
-            <footer class="blockquote-footer text-muted">
+            <footer class="blockquote-footer">
               Sarah P., <cite title="Source Title">Small Business Owner</cite>
+            </footer>
+          </blockquote>
+        </div>
+        <div class="carousel-item">
+          <blockquote class="blockquote px-5">
+            <p class="lead text-light mb-3">
+              "The customer relationship tracker is perfect for my small
+              business. It has helped me stay on top of all my clients."
+            </p>
+            <footer class="blockquote-footer">
+              Jane D., <cite title="Source Title">Freelance Designer</cite>
             </footer>
           </blockquote>
         </div>
@@ -81,6 +119,41 @@ image: /images/ExcelTemplates.png
         <span class="visually-hidden">Next</span>
       </button>
     </div>
-  </section>
-  {% include cta.html %}
-</div>
+  </div>
+</section>
+
+<!-- Latest News/Blog Section -->
+<section id="news-section" class="container my-5 py-5 text-center">
+  <h2 class="fw-bold mb-4 text-primary animate__fadeInUp">Latest News</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card p-4 h-100 text-start">
+        <h4 class="fw-bold text-light">
+          5 Ways to Boost Your Productivity with Templates
+        </h4>
+        <p class="mb-2">October 26, 2024</p>
+        <p class=" ">
+          Learn how to use our templates to save time and streamline your daily
+          tasks.
+        </p>
+        <a href="#" class="btn btn-primary mt-auto">Read More</a>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card p-4 h-100 text-start">
+        <h4 class="fw-bold text-light">
+          New Financial Planner Template Now Available!
+        </h4>
+        <p class="mb-2">October 20, 2024</p>
+        <p class=" ">
+          We're excited to announce the launch of our most requested template
+          yet!
+        </p>
+        <a href="#" class="btn btn-primary mt-auto">Read More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section id="cta-section" class="container">{% include cta.html %}</section>

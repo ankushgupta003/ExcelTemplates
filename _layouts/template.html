@@ -43,10 +43,10 @@
         </div>
         <div class="col-lg-6">
           <h1 class="display-5 fw-bold text-primary">{{ page.title }}</h1>
-          <p class="lead mt-4 text-muted">{{ page.description }}</p>
+          <p class="lead mt-4">{{ page.description }}</p>
           <div class="mt-4">
             <h5 class="fw-bold text-light">Key Features:</h5>
-            <ul class="list-unstyled text-muted mt-3">
+            <ul class="list-unstyled mt-3">
               {% for feature in page.features %}
               <li>
                 <i class="fas fa-check-circle text-primary me-2"></i> {{ feature
@@ -70,5 +70,132 @@
         </div>
       </div>
     </div>
+
+    <!-- More Features Section -->
+    <section class="container py-5 text-center">
+      <h2 class="fw-bold mb-5 text-primary">More Features</h2>
+
+      <!-- Carousel container -->
+      <div
+        id="screenshotsCarousel"
+        class="carousel slide"
+        data-bs-ride="carousel"
+        data-bs-interval="9999999999"
+      >
+        <!-- Carousel inner and items -->
+        <div class="carousel-inner">
+          {% for screenshot in page.screenshots %}
+          <div class="carousel-item {% if forloop.first %}active{% endif %}">
+            <div class="row g-4 justify-content-center align-items-center">
+              <div class="col-lg-8">
+                <img
+                  src="{{ screenshot.url | relative_url }}"
+                  class="d-block w-100 rounded-4 shadow-lg"
+                  style="aspect-ratio: 16/9"
+                  alt="Template Screenshot {{ forloop.index }}"
+                />
+              </div>
+              <div class="col-lg-4">
+                <div
+                  class="card bg-dark-card border-0 rounded-4 shadow-lg h-100 p-4"
+                >
+                  <div class="card-body">
+                    <p class="card-text">{{ screenshot.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Carousel controls (next and previous buttons) placed below -->
+      {% if page.screenshots.size > 1 %}
+      <div class="d-flex justify-content-center mt-4">
+        <button
+          class="btn btn-secondary mx-2 rounded-pill"
+          type="button"
+          data-bs-target="#screenshotsCarousel"
+          data-bs-slide="prev"
+        >
+          <i class="fas fa-arrow-left"></i>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button
+          class="btn btn-secondary mx-2 rounded-pill"
+          type="button"
+          data-bs-target="#screenshotsCarousel"
+          data-bs-slide="next"
+        >
+          <i class="fas fa-arrow-right"></i>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+      {% endif %} {% if page.video %}
+      <div class="row justify-content-center mt-5">
+        <div class="col-md-8 col-lg-6">
+          <h3 class="fw-bold text-light mb-3">Watch the Tutorial</h3>
+          <div
+            class="embed-responsive embed-responsive-16by9 rounded-4 shadow-lg"
+            style="--bs-aspect-ratio: 56.25%"
+          >
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/{{ page.video | split: '/' | last }}"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </section>
+
+    <hr />
+
+    <!-- More from Templates Section -->
+    <div class="container py-5">
+      <h2 class="text-center fw-bold mb-5 text-primary">More from Templates</h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for template in site.templates %} {% unless template.url == page.url
+        %}
+        <div class="col">
+          <div
+            class="card bg-dark-card border-0 rounded-4 shadow-lg p-3 template-card"
+          >
+            <img
+              src="{{ template.image | relative_url }}"
+              class="card-img-top rounded-3"
+              alt="{{ template.title }} Template"
+            />
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-light">
+                {{ template.title }}
+              </h5>
+              <p class="card-text">
+                {{ template.description | strip_html | truncate: 150 }}
+              </p>
+              <a
+                href="{{ site.baseurl }}{{ template.url }}"
+                class="btn btn-outline-secondary rounded-pill px-4 mt-2"
+                >View Details</a
+              >
+            </div>
+          </div>
+        </div>
+        {% endunless %} {% endfor %}
+      </div>
+    </div>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

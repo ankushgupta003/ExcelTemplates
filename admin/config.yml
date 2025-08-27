@@ -21,6 +21,12 @@ collections:
       - { label: "Title", name: "title", widget: "string", required: true }
       - { label: "Image URL", name: "image", widget: "image", required: true }
       - {
+          label: "Download Link",
+          name: "download_link",
+          widget: "string",
+          required: true,
+        }
+      - {
           label: "YouTube Video ID",
           name: "video",
           widget: "string",

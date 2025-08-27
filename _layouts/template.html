@@ -202,6 +202,7 @@
           // Get the price from the Jekyll variable and convert it to paisa
           const price = {{ page.price }} * 100;
           const name = "{{ page.title }}";
+          const downloadLink = "{{ page.download_link }}"; // Get the download link from Jekyll
 
           // Log the payload to the console before sending
           console.log("Sending payload to backend:", { amount: price, product_name: name });
@@ -229,15 +230,17 @@
           .then(order => {
               if (order.id) {
                   const options = {
-                      "key": "rzp_test_RA2NakVSYF1k5z", // Replace with your actual Razorpay Key ID
+                      "key": "YOUR_RAZORPAY_KEY_ID", // Replace with your actual Razorpay Key ID
                       "amount": order.amount,
                       "currency": "INR", // Change to USD or other currency if needed
-                      "name": "ExcelTemplates",
+                      "name": "The Sheet Vault",
                       "description": name,
                       "order_id": order.id,
                       "handler": function (response) {
-                          // This is where you would call another backend endpoint to verify the payment and send the sheet URL
+                          // This is where you would call another backend endpoint to verify the payment
                           const verifyUrl = "/.netlify/functions/verify-payment";
+                          const customerEmail = options.prefill.email; // Capture the email from the prefill
+
                           fetch(verifyUrl, {
                               method: 'POST',
                               headers: {
@@ -247,13 +250,14 @@
                                   razorpay_order_id: response.razorpay_order_id,
                                   razorpay_payment_id: response.razorpay_payment_id,
                                   razorpay_signature: response.razorpay_signature,
-                                  product_name: name
+                                  product_name: name,
+                                  download_link: downloadLink, // Send the download link to the backend
+                                  customer_email: customerEmail // Send the customer's email to the backend
                               }),
                           })
                           .then(res => res.json())
                           .then(data => {
                               if (data.success) {
-                                  // Payment verified. Show a success message or redirect.
                                   alert("Payment verified. A link to your template has been sent to your email!");
                               } else {
                                   alert("Payment verification failed. Please contact support.");
@@ -262,7 +266,7 @@
                       },
                       "prefill": {
                           "name": "Your Name", // Customer Name
-                          "email": "customer@example.com" // Customer Email
+                          "email": "" // Customer Email - Leave this blank for the user to enter their email
                       }
                   };
                   const rzp1 = new Razorpay(options);

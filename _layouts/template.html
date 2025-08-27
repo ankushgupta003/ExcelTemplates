@@ -235,7 +235,7 @@
     <!-- Email Input Modal -->
     <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content text-light">
+            <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="emailModalLabel">Enter your Email</h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -353,7 +353,11 @@
                         },
                         "oncancel": function() {
                             // Explicitly hide the modal and backdrop
-                            emailModal.hide();
+                            const emailModalElement = document.getElementById('emailModal');
+                            const emailModal = bootstrap.Modal.getInstance(emailModalElement);
+                            if (emailModal) {
+                                emailModal.hide();
+                            }
                             const backdrop = document.querySelector('.modal-backdrop');
                             if (backdrop) {
                                 backdrop.remove();

@@ -28,6 +28,20 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <style>
+      .modal-dialog {
+        background-color: #212529;
+        border-radius: 1rem;
+        border: 1px solid #495057;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+      }
+      .modal-header {
+        border-bottom: 1px solid #495057;
+      }
+      .modal-footer {
+        border-top: 1px solid #495057;
+      }
+    </style>
   </head>
   <body class="bg-dark text-light">
     {% include header.html %}
@@ -59,6 +73,8 @@
             <button
               id="rzp-button"
               class="btn btn-primary btn-lg rounded-pill px-5 fw-bold shadow-lg"
+              data-bs-toggle="modal"
+              data-bs-target="#emailModal"
             >
               Purchase Now - Rs.{{ page.price }}
             </button>
@@ -193,10 +209,42 @@
       </div>
     </div>
 
+    <!-- Email Input Modal -->
+    <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-light">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="emailModalLabel">Enter your Email</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="emailForm">
+                        <div class="mb-3">
+                            <label for="customerEmailInput" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="customerEmailInput" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" form="emailForm" class="btn btn-primary">Continue to Payment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Razorpay Checkout Script -->
     <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
-        document.getElementById('rzp-button').onclick = function(e) {
+        document.getElementById('emailForm').onsubmit = function(e) {
+            e.preventDefault(); // Prevent form submission
+            
+            const customerEmail = document.getElementById('customerEmailInput').value;
+
+            // Hide the modal after getting the email
+            const emailModal = bootstrap.Modal.getInstance(document.getElementById('emailModal'));
+            emailModal.hide();
+
             // Updated backend URL for Netlify Function
             const backendUrl = "/.netlify/functions/create-razorpay-order";
             // Get the price from the Jekyll variable and convert it to paisa
@@ -239,7 +287,6 @@
                         "handler": function (response) {
                             // This is where you would call another backend endpoint to verify the payment
                             const verifyUrl = "/.netlify/functions/verify-payment";
-                            const customerEmail = options.prefill.email; // Capture the email from the prefill
                             
                             fetch(verifyUrl, {
                                 method: 'POST',
@@ -258,36 +305,38 @@
                             .then(res => res.json())
                             .then(data => {
                                 if (data.success) {
-                                    alert("Payment verified. A link to your template has been sent to your email!");
+                                    // Use a custom message box instead of alert()
+                                    // since alerts are blocked by the iframe
+                                    console.log("Payment verified. A link to your template has been sent to your email!");
                                 } else {
-                                    alert("Payment verification failed. Please contact support.");
+                                    console.error("Payment verification failed. Please contact support.");
                                 }
                             });
                         },
                         "prefill": {
-                            "name": "Your Name", // Customer Name
-                            "email": "" // Customer Email - Leave this blank for the user to enter their email
-                        },
-                        "display": {
-                            "blocks": {
-                                "banks": {
-                                    "email": "true"
-                                }
-                            }
+                            "name": "Your Name", 
+                            "email": customerEmail // Now using the email from the modal
                         }
                     };
                     const rzp1 = new Razorpay(options);
                     rzp1.open();
                 } else {
-                    alert("Failed to create order. Please try again later.");
+                    console.error("Failed to create order. Please try again later.");
                 }
             })
             .catch(error => {
                 console.error('An error occurred:', error);
-                alert("An error occurred. Please check the console for details.");
             });
+        };
 
-            e.preventDefault();
+        // Initialize the modal if Bootstrap is available
+        window.onload = function() {
+            // This is a workaround to make the button work with the modal
+            const rzpButton = document.getElementById('rzp-button');
+            rzpButton.onclick = function() {
+                const myModal = new bootstrap.Modal(document.getElementById('emailModal'));
+                myModal.show();
+            };
         };
     </script>
     <script

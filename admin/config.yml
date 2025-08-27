@@ -51,6 +51,7 @@ collections:
         fields:
           - {
               label: "Feature",
+              name: "",
               widget: "string",
               required: true,
             }

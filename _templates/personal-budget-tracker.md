@@ -9,8 +9,8 @@ description: This Google Sheets template is designed to give you a complete
   going and how much you’re keeping.
 price: 99
 features:
-  - feature: Columns for each month (JAN–DEC) plus “Total” and “Average” columns.
-  - feature: Summarizes annual totals and monthly averages, giving both granular and
+  - "": Columns for each month (JAN–DEC) plus “Total” and “Average” columns.
+  - "": Summarizes annual totals and monthly averages, giving both granular and
       big-picture insights.
 screenshots:
   - description: >-

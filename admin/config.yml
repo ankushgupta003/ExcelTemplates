@@ -18,14 +18,18 @@ collections:
           widget: "hidden",
           default: "template",
         }
+
+      # HERO SECTION
       - { label: "Title", name: "title", widget: "string", required: true }
-      - { label: "Image URL", name: "image", widget: "image", required: true }
-      - {
-          label: "Download Link",
-          name: "download_link",
-          widget: "string",
-          required: true,
-        }
+      - { label: "Price", name: "price", widget: "number", required: true }
+      - { label: "Main Image", name: "image", widget: "image", required: true }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        fields:
+          - { label: "Image", name: "image", widget: "image", required: true }
+
+      # VIDEO (OPTIONAL)
       - {
           label: "YouTube Video ID",
           name: "video",
@@ -38,34 +42,42 @@ collections:
           widget: "string",
           required: false,
         }
+
+      # PRODUCT CONTENT
       - {
-          label: "Description",
+          label: "Short Description",
           name: "description",
-          widget: "text",
+          widget: "markdown",
           required: true,
         }
-      - { label: "Price", name: "price", widget: "number", required: true }
-      - label: "Features"
-        name: "features"
-        widget: "list"
-        fields:
-          - {
-              label: "Feature",
-              name: "feature",
-              widget: "string",
-              required: true,
-            }
-      - label: "Screenshots"
-        name: "screenshots"
-        widget: "list"
-        fields:
-          - { label: "URL", name: "url", widget: "image", required: true }
-          - {
-              label: "Description",
-              name: "description",
-              widget: "text",
-              required: true,
-            }
+      - {
+          label: "Features",
+          name: "features",
+          widget: "markdown",
+          required: false,
+        }
+      - {
+          label: "How It Works",
+          name: "how_it_works",
+          widget: "markdown",
+          required: false,
+        }
+
+      # FULL PAGE CONTENT (OPTIONAL)
+      - {
+          label: "Detailed Info",
+          name: "details",
+          widget: "markdown",
+          required: false,
+        }
+
+      # DOWNLOAD (sent via email after Razorpay)
+      - {
+          label: "Download Link",
+          name: "download_link",
+          widget: "string",
+          required: true,
+        }
 
   - name: "blog" # A friendly name for the CMS UI
     label: "Blog" # The label in the sidebar

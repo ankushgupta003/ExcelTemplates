@@ -1,0 +1,26 @@
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  {% for template in site.templates limit:3%}
+  <div class="col">
+    <div class="card bg-dark-card border-0 rounded-4 shadow-lg template-card">
+      <div class="image_wrap">
+        <img
+          src="{{ template.image | relative_url }}"
+          class="card-img-top rounded-3"
+          alt="{{ template.title }} Template"
+        />
+      </div>
+      <div class="card-body">
+        <h5 class="card-title fw-bold">{{ template.title }}</h5>
+        <p class="card-text">
+          {{ template.description | strip_html | truncate: 150 }}
+        </p>
+        <a
+          href="{{ site.baseurl }}{{ template.url }}"
+          class="btn btn-primary rounded-pill px-4 mt-2"
+          >View Details</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

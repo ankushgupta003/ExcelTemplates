@@ -5,56 +5,65 @@ image: /images/ExcelTemplates.png
 ---
 
 <!-- Hero Section -->
-<section
-  id="hero-section"
-  class="text-center py-5"
-  style="
-    background-image: url('https://static1.howtogeekimages.com/wordpress/wp-content/uploads/2025/07/illustration-of-the-google-sheets-logo-floating-above-a-stylized-spreadsheet-interface-with-repeated-logo-icons-in-the-background_.png');
-    background-size: cover;
-    background-position: center;
-    position: relative;
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col col-12">
+        <div class="hero">
+          <div class="hero-left">
+            <h1 class="hero-title">The Future of Productivity</h1>
+            <div class="hero-description">
+              <p>
+                <strong>Professional-grade</strong> Google Sheets templates
+                designed to supercharge your
+                <strong>productivity</strong>and<strong>organization</strong>.
+              </p>
+            </div>
+            <div class="hero-btn">
+              <a class="btn btn-primary rounded-pill" href="#contact"
+                >Get in touch</a
+              >
+              <a class="btn btn-secondary rounded-pill" href="/templates">
+                <span class="circle-bg"
+                  ><i class="ion ion-md-arrow-down button-arrow"></i
+                ></span>
+                See my works
+              </a>
+            </div>
+          </div>
 
-    overflow: hidden;
-  "
->
-  <div
-    style="
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(
-        13,
-        17,
-        23,
-        0.7
-      ); /* Dark semi-transparent overlay */
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      box-shadow: 0 0 40px rgba(210, 50, 193, 0.5); /* Glowing effect */
-      z-index: 1;
-    "
-  ></div>
-  <div class="container py-5" style="position: relative; z-index: 2">
-    <h1 class="display-3 fw-bold text-primary animate__fadeInUp">
-      <span id="typing-text">The Future of Productivity</span>
-    </h1>
-    <p class="lead mt-4 mx-auto animate__fadeInUp" style="max-width: 700px">
-      Professional-grade Google Sheets templates designed to supercharge your
-      productivity and organization.
-    </p>
-    <a
-      href="#templates"
-      class="btn btn-primary btn-lg mt-4 px-5 rounded-pill shadow-lg animate__fadeInUp pulsating-glow"
-    >
-      Explore Templates
-    </a>
+          <div class="hero-right d-none d-lg-block">
+            <div class="hero-image">
+              <img class="w-100" alt="" src="/images/hero.png" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- Templates Section -->
-{% include templates.html%}
+<section id="template-section" class="py-5">
+  <div class="container">
+    <div class="section__info">
+      <div class="section__head">
+        <h2 class="section__title">Recent Templates</h2>
+        <a class="section__link" href="/templates"
+          >View all <i class="fa-solid fa-arrow-right"></i
+        ></a>
+      </div>
+      <div class="section__description">
+        <p>
+          Vonge blog features productivity, tips, inspiration and strategies for
+          massive profits. Find out how to set up a successful blog or how to
+          make yours even better!
+        </p>
+      </div>
+    </div>
+    {%include latest-templates.html%}
+  </div>
+</section>
 
 <!-- Testimonials Section -->
 <section id="testimonials-section" class="text-center">
@@ -63,6 +72,21 @@ image: /images/ExcelTemplates.png
 
 <!-- Latest News/Blog Section -->
 <section id="news-section" class="container">
+  <div class="section__info">
+    <div class="section__head">
+      <h2 class="section__title">Recent Posts</h2>
+      <a class="section__link" href="/blog"
+        >View all <i class="fa-solid fa-arrow-right"></i
+      ></a>
+    </div>
+    <div class="section__description">
+      <p>
+        Vonge blog features productivity, tips, inspiration and strategies for
+        massive profits. Find out how to set up a successful blog or how to make
+        yours even better!
+      </p>
+    </div>
+  </div>
   {%include latest-blogs.html%}
 </section>
 

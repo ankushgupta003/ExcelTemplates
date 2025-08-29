@@ -52,7 +52,7 @@
                       "key": "rzp_live_RBA40FctynOwAo", // Replace with your actual Razorpay Key ID
                       "amount": order.amount,
                       "currency": "INR", // Change to USD or other currency if needed
-                      "name": "The Sheet Vault",
+                      "name": "ExcelTemplates",
                       "description": name,
                       "order_id": order.id,
                       "handler": function (response) {

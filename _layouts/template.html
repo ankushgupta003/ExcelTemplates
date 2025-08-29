@@ -37,27 +37,93 @@
       <div class="row g-4">
         <!-- Left column: Images -->
         <div class="col-md-6">
-          <!-- Main large image -->
-          <img
-            src="{{ page.image }}"
-            alt="{{ page.title }}"
-            class="img-fluid mb-3 rounded shadow-sm"
-          />
+          <!-- Desktop / Tablet: Normal layout -->
+          <div class="d-none d-md-block">
+            <img
+              src="{{ page.image }}"
+              alt="{{ page.title }}"
+              class="img-fluid mb-3 rounded shadow-sm"
+              data-bs-toggle="modal"
+              data-bs-target="#imageModal"
+            />
 
-          <!-- Remaining images in 2-column grid -->
-          {% if page.screenshots %}
-          <div class="row g-3">
-            {% for screenshot in page.screenshots %}
-            <div class="col-6">
-              <img
-                src="{{ screenshot.url }}"
-                alt="Template Screenshot"
-                class="img-fluid rounded shadow-sm"
-              />
+            {% if page.gallery %}
+            <div class="row g-3">
+              {% for item in page.gallery %}
+              <div class="col-6">
+                <img
+                  src="{{ item.image }}"
+                  alt="Template Screenshot"
+                  class="img-fluid rounded shadow-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imageModal"
+                />
+              </div>
+              {% endfor %}
             </div>
-            {% endfor %}
+            {% endif %}
           </div>
-          {% endif %}
+
+          <!-- Mobile: Horizontal scroll -->
+          <div class="d-md-none">
+            <div class="d-flex overflow-auto gap-2 pb-2">
+              <div class="flex-shrink-0" style="width: 250px">
+                <img
+                  src="{{ page.image }}"
+                  alt="{{ page.title }}"
+                  class="img-fluid rounded shadow-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imageModal"
+                />
+              </div>
+
+              {% if page.gallery %} {% for item in page.gallery %}
+              <div class="flex-shrink-0" style="width: 250px">
+                <img
+                  src="{{ item.image }}"
+                  alt="Template Screenshot"
+                  class="img-fluid rounded shadow-sm"
+                  data-bs-toggle="modal"
+                  data-bs-target="#imageModal"
+                />
+              </div>
+              {% endfor %} {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Bootstrap Modal (Full screen vertical scroll) -->
+        <div class="modal fade" id="imageModal" tabindex="-1">
+          <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content bg-dark">
+              <div class="modal-header border-0">
+                <button
+                  type="button"
+                  class="btn-close btn-close-white"
+                  data-bs-dismiss="modal"
+                ></button>
+              </div>
+              <div
+                class="modal-body d-flex flex-column align-items-center gap-3 overflow-auto"
+              >
+                <!-- Main image -->
+                <img
+                  src="{{ page.image }}"
+                  class="img-fluid rounded shadow-sm"
+                  alt="{{ page.title }}"
+                />
+
+                <!-- Gallery images -->
+                {% if page.gallery %} {% for item in page.gallery %}
+                <img
+                  src="{{ item.image }}"
+                  class="img-fluid rounded shadow-sm"
+                  alt="Template Screenshot"
+                />
+                {% endfor %} {% endif %}
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- Right column: Content -->

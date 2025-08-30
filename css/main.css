@@ -128,6 +128,8 @@ h6 {
 }
 .card-body {
   border-radius: 16px 16px 0px 0px;
+  background: white;
+  margin-top: -10px;
 
   p {
     line-height: 1.6;
@@ -151,4 +153,106 @@ h6 {
 
 .navbar-brand:hover {
   transform: scale(1.05);
+}
+
+/* BLOG-POST PAGE */
+.post-image {
+  position: relative;
+  transform: translate(0);
+  padding-top: 100%;
+  min-height: 280px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #d5dce3;
+}
+.post-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  user-select: none;
+}
+.post__info {
+  margin-left: 40px;
+}
+@media only screen and (max-width: 1024px) {
+  .post__info {
+    margin-left: 0;
+  }
+}
+
+.post-categories {
+  display: flex;
+}
+
+.post-categories .post-categories__category {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 4px 4px 0;
+  font-size: 12px;
+  line-height: 10px;
+  font-weight: 600;
+  text-transform: capitalize;
+  border-radius: 8px;
+  overflow: hidden;
+  color: #fff;
+  background: linear-gradient(90deg, #1495a7 0%, #003687 167%);
+}
+.post__title {
+  margin: 20px 0;
+  font-size: 58px;
+  line-height: 1.2;
+}
+@media only screen and (max-width: 576px) {
+  .post__title {
+    font-size: 32px;
+  }
+}
+
+.post__meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.post__meta .post__author-image {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  margin-right: 8px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #d5dce3;
+}
+.post__meta .post__author-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  user-select: none;
+}
+.post__meta .post__meta-bottom {
+  display: flex;
+  flex-direction: column;
+}
+.post__meta .post__author {
+  margin-bottom: 6px;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.post__meta .post__date {
+  font-size: 12px;
+  line-height: 14px;
+}
+.post {
+  max-width: 780px;
+  margin: 0 auto 60px;
 }

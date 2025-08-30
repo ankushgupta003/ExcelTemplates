@@ -172,7 +172,14 @@
 
     <!-- You May Also Like -->
     <div class="container py-5">
-      <h2 class="text-center fw-bold mb-5">More from Templates</h2>
+      <div class="section__info">
+        <div class="section__head">
+          <h2 class="section__title">More from Templates</h2>
+          <a class="section__link" href="/templates"
+            >View all <i class="fa-solid fa-arrow-right"></i
+          ></a>
+        </div>
+      </div>
       <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
         {% for template in site.templates %} {% unless template.url == page.url
         %}

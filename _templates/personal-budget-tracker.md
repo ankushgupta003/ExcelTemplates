@@ -2,11 +2,11 @@
 layout: template
 title: Personal Budget Tracker
 price: 199
-image: /images/blog/screenshot-from-2025-08-26-21-12-44.png
+image: /images/blog/1.webp
 gallery:
-  - image: /images/blog/screenshot-from-2025-08-26-21-12-44.png
-  - image: /images/blog/screenshot-from-2025-08-27-12-41-50.png
-  - image: /images/blog/screenshot-from-2025-08-27-10-08-15.png
+  - image: /images/blog/2.webp
+  - image: /images/blog/3.webp
+  - image: /images/blog/4.webp
 description: This personal budget tracker is a user-friendly Google Sheets
   template designed to help you manage your finances. It lets you easily track
   income and expenses, set monthly budgets, and visualize your financial health
@@ -29,11 +29,7 @@ how_it_works: >-
   can put it to work for you.
 
 
-
-
-  ### Step 1: Get Started with Simple Setup
-
-
+  #### *Step 1: Get Started with Simple Setup*
 
 
   The first step is to personalize the tracker to your needs. Go to the "Setup" tab where you can:
@@ -44,11 +40,7 @@ how_it_works: >-
   * **Define Your Categories:** This is the most crucial part. You can easily add, edit, or remove categories for both your income (e.g., "Salary," "Freelance," "Side Hustle") and your expenses (e.g., "Groceries," "Rent," "Entertainment"). This ensures your budget perfectly fits your lifestyle.
 
 
-
-
-  ### Step 2: Log Your Transactions
-
-
+  #### *Step 2: Log Your Transactions*
 
 
   This is where the magic happens. Use the "Transactions" tab to log every single financial activity. All you need to do is enter three simple pieces of information:
@@ -64,11 +56,7 @@ how_it_works: >-
   The template will automatically categorize it for you based on the categories you set up in Step 1.
 
 
-
-
-  ### Step 3: Watch Your Dashboard Come to Life
-
-
+  #### *Step 3: Watch Your Dashboard Come to Life*
 
 
   Once you start logging transactions, your main dashboard will automatically update in real-time. This is where you get a clear visual summary of your finances. On the dashboard, you’ll find:

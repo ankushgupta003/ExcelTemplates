@@ -85,14 +85,27 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - {
-          label: "Layout",
-          name: "layout",
-          widget: "hidden",
-          default: "default",
-        }
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Author", name: "author", widget: "string" }
-      - { label: "Date", name: "date", widget: "datetime" }
-      - { label: "Categories", name: "categories", widget: "list" }
+      - {
+          label: "Featured Image",
+          name: "image",
+          widget: "image",
+          required: false,
+        }
+      - { label: "Publish Date", name: "date", widget: "datetime" }
+      - {
+          label: "Categories",
+          name: "categories",
+          widget: "list",
+          default: ["Blog"],
+        }
+      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: "Description", name: "description", widget: "string" }
+      - {
+          label: "Permalink",
+          name: "permalink",
+          widget: "string",
+          required: false,
+        }
       - { label: "Body", name: "body", widget: "markdown" }

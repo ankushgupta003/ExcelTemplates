@@ -7,6 +7,7 @@ gallery:
   - image: /images/blog/2.webp
   - image: /images/blog/3.webp
   - image: /images/blog/4.webp
+video: https://www.youtube.com/embed/DzFDs2SYiCk?si=cTB-s08UpKxtM8_N
 description: This personal budget tracker is a user-friendly Google Sheets
   template designed to help you manage your finances. It lets you easily track
   income and expenses, set monthly budgets, and visualize your financial health

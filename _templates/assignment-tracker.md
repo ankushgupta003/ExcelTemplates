@@ -6,6 +6,7 @@ image: /images/blog/a1.png.webp
 gallery:
   - image: /images/blog/a2.png.webp
   - image: /images/blog/a3.png.webp
+video: https://www.youtube.com/embed/_35wIf5Zrrg?si=_ABuxuEQS6nelbEG
 description: The ultimate tool for students to stay organized, reduce stress,
   and manage their coursework effectively! This **Assignment Tracker** Google
   Sheets Template allows you to keep all your assignments in one place and track

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {% seo %}
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ page.title }} | {{ site.title }}</title>
@@ -36,7 +37,7 @@
     <div class="container py-5">
       <div class="row g-4">
         <!-- Left column: Images -->
-        <div class="col-md-6">
+        <div class="col-md-7">
           <!-- Desktop / Tablet: Normal layout -->
           <div class="d-none d-md-block">
             <img
@@ -94,7 +95,7 @@
 
         <!-- Bootstrap Modal (Full screen vertical scroll) -->
         <div class="modal fade" id="imageModal" tabindex="-1">
-          <div class="modal-dialog modal-fullscreen">
+          <div class="modal-dialog">
             <div class="modal-content bg-dark">
               <div class="modal-header border-0">
                 <button
@@ -127,28 +128,41 @@
         </div>
 
         <!-- Right column: Content -->
-        <div class="col-md-6">
+        <div class="col-md-5">
           <h1 class="mb-3">{{ page.title }}</h1>
-          <div class="lead">{{ page.description | markdownify }}</div>
-          <h3 class="mt-4 text-success">₹{{ page.price }}</h3>
+          <div class="mt-3 text-muted d-none d-md-block">
+            {{ page.description | markdownify }}
+          </div>
+          <p class="mt-4 fw-bold">
+            <span class="text-muted" style="text-decoration: line-through"
+              >Rs.{{ page.old-price }}</span
+            >
+            Rs.{{ page.price }}
+          </p>
 
           <!-- Razorpay Buy Now -->
           <button
             id="rzp-button"
-            class="btn btn-primary btn-lg rounded-pill px-5 fw-bold shadow-lg"
+            class="btn btn-primary btn-lg rounded-pill fw-bold shadow-lg"
             data-bs-toggle="modal"
             data-bs-target="#emailModal"
           >
             Buy Now
           </button>
+          <div class="mt-3 text-muted d-md-none">
+            {{ page.description | markdownify }}
+          </div>
+
           <div>
             <h2 class="mt-4">Features</h2>
-            {{ page.features | markdownify }}
+            <span class="text-muted">{{ page.features | markdownify }}</span>
           </div>
 
           <div>
             <h2 class="mt-4">How it works</h2>
-            {{ page.how_it_works | markdownify }}
+            <span class="text-muted"
+              >{{ page.how_it_works | markdownify }}</span
+            >
           </div>
         </div>
       </div>
@@ -260,3 +274,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
   </body>
 </html>
+
+<style>
+  .modal-dialog {
+    max-width: none !important;
+    height: 100% !important;
+    margin: 0 !important;
+  }
+</style>

@@ -21,6 +21,12 @@ collections:
 
       # HERO SECTION
       - { label: "Title", name: "title", widget: "string", required: true }
+      - {
+          label: "Old Price",
+          name: "old-price",
+          widget: "number",
+          required: true,
+        }
       - { label: "Price", name: "price", widget: "number", required: true }
       - { label: "Main Image", name: "image", widget: "image", required: true }
       - label: "Gallery"

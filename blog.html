@@ -1,13 +1,14 @@
 ---
 layout: default
 title: Blog
+description: Explore our blog for expert tips, tutorials, and inspiration. Learn how to master Google Sheets and use our templates to boost your productivity for any task.
 ---
 
 <div class="container py-5">
   <h1 class="display-4 fw-bold text-center mb-5">Insights & Tips</h1>
   <div class="row g-4">
     {% for post in site.posts %}
-    <div class="col-md-6 col-lg-4">
+    <div class="col-md-6 col-lg-3">
       <div
         class="card bg-dark-card border-0 rounded-4 shadow-lg h-100 blog-card"
       >
@@ -19,7 +20,7 @@ title: Blog
         <div class="card-body d-flex flex-column">
           <h5 class="card-title fw-bold">{{ post.title }}</h5>
           <p class="card-text">
-            {{ post.excerpt | strip_html | truncate: 150 }}
+            {{ post.excerpt | strip_html | truncate: 100 }}
           </p>
           <small class="mt-auto mb-2"
             ><i class="far fa-calendar-alt me-2"></i>{{ post.date | date: '%B

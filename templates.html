@@ -1,12 +1,14 @@
 ---
 layout: default
+title: Templates
+description: Discover a comprehensive collection of Google Sheets templates for every need. From project trackers to personal planners, find the perfect tool to simplify your tasks and streamline your workflow.
 ---
 
 <div class="container py-5" id="templates">
   <h1 class="display-4 fw-bold text-center mb-5">Top Templates</h1>
   <div class="row g-4">
     {% for template in site.templates %}
-    <div class="col-md-6 col-lg-3">
+    <div class="col-6 col-lg-3">
       <div
         class="card bg-dark-card border-0 rounded-4 shadow-lg h-100 blog-card"
       >
@@ -16,13 +18,19 @@ layout: default
           alt="{{ template.title }} Template"
         />
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-bold text-primary">{{ template.title }}</h5>
-          <p class="card-text">
-            {{ template.description | strip_html | truncate: 150 }}
+          <h5 class="card-title fw-bold">{{ template.title }}</h5>
+          <p class="card-text d-none d-md-block">
+            {{ template.description | strip_html | truncate: 100 }}
+          </p>
+          <p class="fw-bold">
+            <span class="text-muted" style="text-decoration: line-through"
+              >Rs.{{ template.old-price }}</span
+            >
+            Rs.{{ template.price }}
           </p>
           <a
             href="{{ site.baseurl }}{{ template.url }}"
-            class="btn btn-primary rounded-pill px-4 mt-2"
+            class="btn btn-primary rounded-pill mt-2"
             >View Details</a
           >
         </div>

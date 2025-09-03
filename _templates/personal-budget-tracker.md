@@ -1,6 +1,7 @@
 ---
 layout: template
 title: Personal Budget Tracker
+old-price: 149
 price: 99
 image: /images/blog/1.webp
 gallery:

@@ -1,6 +1,7 @@
 ---
 layout: template
 title: Assignment Tracker
+old-price: 149
 price: 99
 image: /images/blog/a1.png.webp
 gallery:

@@ -147,14 +147,12 @@ h6 {
   color: #e5e7eb;
 }
 
-.navbar-brand {
-  transition: transform 0.3s ease;
+.navbar-toggler {
+  border: none;
 }
-
-.navbar-brand:hover {
-  transform: scale(1.05);
+.navbar-toggler:focus {
+  box-shadow: none;
 }
-
 /* BLOG-POST PAGE */
 .post-image {
   position: relative;

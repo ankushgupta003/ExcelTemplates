@@ -6,7 +6,14 @@ body {
   color: #110e38;
   background-color: #f2f6ff;
 }
-
+section {
+  padding: 96px 0;
+}
+@media only screen and (max-width: 576px) {
+  section {
+    padding: 30px 0;
+  }
+}
 /* footer */
 footer {
   background: linear-gradient(90deg, #1495a7 0%, #003687 167%);
@@ -56,6 +63,111 @@ h6 {
   align-items: center;
 }
 
+@media only screen and (min-width: 768px) {
+  .hero-title {
+    font-size: 58px;
+    line-height: 1.2;
+    margin: 0 0 24px;
+  }
+}
+.hero-left {
+  padding-right: 20px;
+  margin-right: auto;
+}
+@media only screen and (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+  }
+
+  .hero-right,
+  .hero-left {
+    width: 100%;
+  }
+}
+
+.hero-right {
+  position: relative;
+}
+.hero-image {
+  position: relative;
+  z-index: 10;
+  width: 480px;
+  height: 520px;
+  margin-left: auto;
+}
+.hero-image img {
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  border-radius: 60px;
+  object-fit: cover;
+  user-select: none;
+  box-shadow: 0 100px 80px #1495a712, 0 41.7776px 33.4221px #1495a70d,
+    0 22.3363px 17.869px #1495a70b, 0 12.5216px 10.0172px #1495a709,
+    0 6.6501px 5.32008px #1495a707, 0 2.76726px 2.21381px #1495a705;
+  transition: inherit;
+  background: #d5dce3;
+}
+@media only screen and (max-width: 1130px) {
+  .hero-right .hero-image {
+    width: 400px;
+    height: 420px;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .hero-right .hero-image {
+    width: 340px;
+    height: 360px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .hero-right {
+    order: -1;
+  }
+
+  .hero-right .hero-image {
+    width: 100%;
+    height: 380px;
+    margin-bottom: 40px;
+  }
+
+  .hero-right .hero-image:before {
+    border-radius: 30px;
+  }
+
+  .hero-right .hero-image img {
+    border-radius: 30px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .hero-right .hero-image {
+    height: 280px;
+    margin-bottom: 32px;
+  }
+
+  .hero-right .hero-image:before {
+    border-radius: 16px;
+  }
+
+  .hero-right .hero-image img {
+    border-radius: 16px;
+    box-shadow: none;
+  }
+}
+.hero-btn {
+  display: flex;
+  align-items: center;
+}
+.cta-btn {
+  padding: 12px 32px;
+  font-size: 16px;
+  margin-right: 8px;
+}
 .section__info {
   margin-bottom: 60px;
 }

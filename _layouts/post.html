@@ -1,5 +1,9 @@
 ---
 layout: default
+title: "{{ page.title | escape }}"
+description: "{{ page.description | escape }}"
+canonical: "{{ site.url }}{{ site.baseurl }}{{ page.url }}"
+image: "{{ site.url }}{{ site.baseurl }}{{ page.image }}"
 ---
 
 <section class="py-5">

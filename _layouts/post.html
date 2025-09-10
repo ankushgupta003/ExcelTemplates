@@ -93,6 +93,17 @@ image: "{{ site.url }}{{ site.baseurl }}{{ page.image }}"
           alt="{{ post.title }}"
         />
         <div class="card-body">
+          {% if post.categories and post.categories.size > 0 %}
+          <div class="post-categories mb-2">
+            {% for category in post.categories %}
+            <a
+              href="{{ site.baseurl }}/category/{{ category | downcase }}"
+              class="post-categories__category"
+              >{{ category }}</a
+            >
+            {% endfor %}
+          </div>
+          {% endif %}
           <h5 class="card-title fw-bold">{{ post.title }}</h5>
           <p class="card-text">
             {{ post.description | strip_html | truncate: 150 }}

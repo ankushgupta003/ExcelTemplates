@@ -12,6 +12,9 @@ github_username: jekyll
 # Build settings
 theme: minima
 vmarkdown: kramdown
+highlighter: rouge
+rouge:
+  theme: github
 sass:
   style: compressed
 plugins:

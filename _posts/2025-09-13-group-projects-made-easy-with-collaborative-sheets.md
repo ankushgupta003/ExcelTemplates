@@ -33,15 +33,12 @@ This makes it the ultimate tool for students, freelancers, and professionals wor
 Start with a clean sheet and create these sections:
 
 ✅ Task Assignment Table
-| Task          | Assigned To | Deadline | Status      | Comments            |
+
+| \| Task       | Assigned To | Deadline | Status      | Comments            |
 | ------------- | ----------- | -------- | ----------- | ------------------- |
 | Research      | Alex        | 20 Sept  | In Progress | Waiting for sources |
 | Design Slides | Priya       | 22 Sept  | Pending     | —                   |
 | Final Report  | John        | 25 Sept  | Pending     | —                   |
-
-Research	Alex	20 Sept	In Progress	Waiting for sources
-Design Slides	Priya	22 Sept	Pending	—
-Final Report	John	25 Sept	Pending	—
 
 * Pro Tip: Use Data Validation for the Status column to create a dropdown menu with options like "Pending," "In Progress," and "Done."
 * Pro Tip: Apply Conditional Formatting to automatically change the color of the status:
@@ -83,7 +80,7 @@ Everyone tagged gets notified instantly, keeping conversations organized and att
 
 Pair Google Sheets with Google Apps Script to send automatic deadline reminders. This script sends an email reminder two days before a task is due:
 
-```
+```javascript
 function sendReminders() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("Tasks");
   var data = sheet.getDataRange().getValues();

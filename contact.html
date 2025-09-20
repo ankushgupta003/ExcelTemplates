@@ -29,47 +29,50 @@ canonical: "{{ site.url }}{{ site.baseurl }}/contact"
             >
               <!-- Netlify hidden input -->
               <form name="contact" method="POST" data-netlify="true" action="/thank-you">
-            <input type="hidden" name="form-name" value="contact" />
+  <!-- required hidden field -->
+  <input type="hidden" name="form-name" value="contact" />
 
-              <div class="mb-3">
-                <label class="form-label">Your Name</label>
-                <input type="text" name="name" class="form-control" required />
-              </div>
+  <div class="mb-3">
+    <label for="name" class="form-label">Your Name</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      class="form-control"
+      placeholder="Enter your name"
+      required
+    />
+  </div>
 
-              <div class="mb-3">
-                <label class="form-label">Email Address</label>
-                <input
-                  type="email"
-                  name="email"
-                  class="form-control"
-                  required
-                />
-              </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email Address</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      class="form-control"
+      placeholder="you@example.com"
+      required
+    />
+  </div>
 
-              <div class="mb-3">
-                <label class="form-label">Subject</label>
-                <select name="subject" class="form-select">
-                  <option>General Inquiry</option>
-                  <option>Template Support</option>
-                  <option>Business Collaboration</option>
-                  <option>Other</option>
-                </select>
-              </div>
+  <div class="mb-3">
+    <label for="message" class="form-label">Message</label>
+    <textarea
+      id="message"
+      name="message"
+      rows="5"
+      class="form-control"
+      placeholder="Type your message here..."
+      required
+    ></textarea>
+  </div>
 
-              <div class="mb-3">
-                <label class="form-label">Message</label>
-                <textarea
-                  name="message"
-                  rows="5"
-                  class="form-control"
-                  required
-                ></textarea>
-              </div>
+  <button type="submit" class="btn btn-primary rounded-pill px-4">
+    Send Message
+  </button>
+</form>
 
-              <button type="submit" class="btn btn-primary rounded-pill px-4">
-                Send Message
-              </button>
-            </form>
           </div>
         </div>
       </div>

@@ -1,0 +1,30 @@
+---
+layout: default
+---
+
+<div class="container my-5">
+  <h1 class="fw-bold mb-4">Category: {{ page.title }}</h1>
+
+  <div class="row">
+    {% for post in page.posts %}
+    <div class="col-md-4 mb-4">
+      <div class="card shadow-sm h-100">
+        {% if post.image %}
+        <img
+          src="{{ post.image }}"
+          class="card-img-top"
+          alt="{{ post.title }}"
+        />
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ post.title }}</h5>
+          <p class="card-text text-muted small">
+            {{ post.excerpt | strip_html | truncate: 120 }}
+          </p>
+          <a href="{{ post.url }}" class="btn btn-primary btn-sm">Read More</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>

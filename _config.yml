@@ -19,6 +19,11 @@ sass:
   style: compressed
 plugins:
   - jekyll-feed
+  - jekyll-archives
+
+gems:
+  - jekyll-lunr-js-search
+
 # exclude:
 #   - .sass-cache/
 #   - .jekyll-cache/
@@ -30,6 +35,14 @@ plugins:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+
+jekyll-archives:
+  enabled:
+    - categories
+  layouts:
+    category: category
+  permalinks:
+    category: /category/:name/
 
 collections:
   templates:

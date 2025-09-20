@@ -1,0 +1,106 @@
+---
+layout: default
+title: Contact Us
+description: Get in touch with Templyfy for support, inquiries, or collaborations. We're here to help you with Google Sheets & Excel templates.
+canonical: "{{ site.url }}{{ site.baseurl }}/contact"
+---
+
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h1 class="fw-bold display-5">Contact Us</h1>
+      <p class="lead text-muted">
+        Have questions about our templates or need support? We’re here to help.
+      </p>
+    </div>
+
+    <div class="row g-5">
+      <!-- Contact Form -->
+      <div class="col-lg-7">
+        <div class="card shadow-sm border-0 rounded-4">
+          <div class="card-body p-4">
+            <h4 class="fw-bold mb-4">Send us a message</h4>
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              class="needs-validation"
+              novalidate
+            >
+              <!-- Netlify hidden input -->
+              <form name="contact" method="POST" data-netlify="true" action="/thank-you">
+            <input type="hidden" name="form-name" value="contact" />
+
+              <div class="mb-3">
+                <label class="form-label">Your Name</label>
+                <input type="text" name="name" class="form-control" required />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  class="form-control"
+                  required
+                />
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Subject</label>
+                <select name="subject" class="form-select">
+                  <option>General Inquiry</option>
+                  <option>Template Support</option>
+                  <option>Business Collaboration</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="mb-3">
+                <label class="form-label">Message</label>
+                <textarea
+                  name="message"
+                  rows="5"
+                  class="form-control"
+                  required
+                ></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary rounded-pill px-4">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-lg-5">
+        <div class="card shadow-sm border-0 rounded-4 p-4 mb-4">
+          <h5 class="fw-bold mb-3">📧 Email</h5>
+          <p><a href="mailto:guptankush1@gmail.com">guptankush1@gmail.com</a></p>
+
+          <h5 class="fw-bold mb-3"><i class="fa-brands fa-whatsapp"></i> WhatsApp</h5>
+          <p>
+            <a href="https://wa.me/8684997801" target="_blank"
+              >+91 8684997801</a
+            >
+          </p>
+
+          <h5 class="fw-bold mb-3">🌐 Follow Us</h5>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-dark"
+              ><i class="fab fa-twitter fa-lg"></i
+            ></a>
+            <a href="#" class="text-dark"
+              ><i class="fab fa-linkedin fa-lg"></i
+            ></a>
+            <a href="#" class="text-dark"
+              ><i class="fab fa-youtube fa-lg"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

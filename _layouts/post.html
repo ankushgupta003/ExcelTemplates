@@ -1,121 +1,180 @@
 ---
 layout: default
-title: "{{ page.title | escape }}"
-description: "{{ page.description | escape }}"
-canonical: "{{ site.url }}{{ site.baseurl }}{{ page.url }}"
-image: "{{ site.url }}{{ site.baseurl }}{{ page.image }}"
 ---
 
-<section class="py-5">
-  <div class="container">
-    <div class="row">
-      {% if page.image %}
-      <div class="col-12 col-lg-6">
-        <div class="post-image">
+<div class="container my-5">
+  <div class="row">
+    <!-- Main Blog Content -->
+    <div class="col-lg-8">
+      <article class="blog-post">
+        {% seo %}
+
+        <!-- Blog Header -->
+        <header class="mb-4">
+          <h1 class="fw-bold display-5">{{ page.title }}</h1>
+          {% if page.date %}
+          <p class="text-muted small">📅 {{ page.date | date: "%B %d, %Y" }}</p>
+          {% endif %}
+        </header>
+
+        <!-- Featured Image -->
+        {% if page.image %}
+        <figure class="mb-4">
           <img
-            loading="lazy"
-            src="{{ site.baseurl }}{{ page.image }}"
-            alt="{{ page.title | escape }}"
+            src="{{ page.image }}"
+            alt="{{ page.title }}"
+            class="img-fluid rounded shadow-sm w-100"
           />
+        </figure>
+        {% endif %}
+
+        <!-- Ad slot -->
+        <div class="ad-slot my-4 text-center">
+          <!-- Google AdSense code -->
+        </div>
+
+        <!-- Blog Content -->
+        <div class="content mb-5">{{ content }}</div>
+
+        <!-- Inline Ad -->
+        <div class="ad-slot my-5 text-center">
+          <!-- Google AdSense code -->
+        </div>
+
+        <!-- Author Box -->
+        <aside
+          class="author-box d-flex align-items-center p-4 bg-light rounded shadow-sm mb-5"
+        >
+          <img
+            src="/images/profile.webp"
+            alt="Ankush"
+            class="rounded-circle me-3"
+            width="70"
+            height="70"
+          />
+          <div>
+            <h6 class="mb-1 fw-bold">Ankush</h6>
+            <p class="mb-0 small text-muted">
+              Founder of <a href="https://templyfy.in">Templyfy</a>. I create
+              simple & powerful Excel and Google Sheets templates to make your
+              work easier.
+            </p>
+          </div>
+        </aside>
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="col-lg-4 ps-lg-5 mt-5 mt-lg-0 d-none d-lg-block">
+      <!-- Search -->
+      <div class="card shadow-sm mb-4 border-0">
+        <div class="card-body p-3">
+          <form action="/search" method="get" class="d-flex">
+            <input
+              type="text"
+              name="q"
+              class="form-control rounded-start"
+              placeholder="Search posts..."
+            />
+            <button class="btn rounded-end" type="submit">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Ad slot -->
+      <div class="mb-4 text-center">
+        <!-- Google AdSense code -->
+        <div class="bg-light border rounded p-3 small text-muted">Ad space</div>
+      </div>
+
+      <!-- Categories -->
+      <div class="card shadow-sm mb-4 border-0">
+        <div class="card-body">
+          <h6 class="fw-bold text-uppercase small mb-3">
+            <i class="bi bi-folder2-open me-1"></i> Categories
+          </h6>
+          <ul class="list-unstyled mb-0">
+            {% for category in site.categories %}
+            <li class="mb-2 d-flex justify-content-between align-items-center">
+              <a
+                href="{{ site.baseurl }}/category/{{ category[0] | slugify }}"
+                class="text-decoration-none text-dark"
+              >
+                {{ category[0] }}
+              </a>
+              <span class="badge bg-light text-muted border"
+                >{{ category[1].size }}</span
+              >
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Latest Posts -->
+      <div class="card shadow-sm mb-4 border-0">
+        <div class="card-body">
+          <h6 class="fw-bold text-uppercase small mb-3">
+            <i class="bi bi-clock-history me-1"></i> Latest Posts
+          </h6>
+          <ul class="list-unstyled mb-0">
+            {% for post in site.posts limit:5 %}
+            <li class="mb-2">
+              <a href="{{ post.url }}" class="text-decoration-none d-block">
+                <i class="bi bi-chevron-right small text-primary me-1"></i> {{
+                post.title }}
+              </a>
+            </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Sticky TOC (optional) -->
+      {% if page.toc %}
+      <div
+        class="card shadow-sm mb-4 border-0 d-none d-lg-block position-sticky"
+        style="top: 90px"
+      >
+        <div class="card-body">
+          <h6 class="fw-bold text-uppercase small mb-3">
+            <i class="bi bi-list-ul me-1"></i> Table of Contents
+          </h6>
+          {{ page.toc }}
         </div>
       </div>
       {% endif %}
-
-      <div class="col-12 col-lg-6">
-        <div class="post__info">
-          <h1 class="post__title">{{ page.title | escape }}</h1>
-
-          {% if page.categories and page.categories.size > 0 %}
-          <div class="post-categories">
-            {% for category in page.categories %}
-            <a
-              href="{{ site.baseurl }}/category/{{ category | downcase }}"
-              class="post-categories__category"
-              >{{ category }}</a
-            >
-            {% endfor %}
-          </div>
-          {% endif %}
-
-          <div class="post__meta">
-            <div class="post__author-image">
+    </aside>
+    <!-- Related Posts -->
+    <section class="related-posts mt-5">
+      <h4 class="fw-bold mb-4">📌 Related Posts</h4>
+      <div class="row">
+        {% assign related = site.posts | where_exp: "post", "post.categories
+        contains page.categories[0] and post.url != page.url" %} {% for post in
+        related limit:3 %}
+        <div class="col-md-4 mb-3">
+          <a href="{{ post.url }}" class="text-decoration-none">
+            <div class="card h-100 shadow-sm border-0 hover-shadow transition">
+              {% if post.image %}
               <img
-                loading="lazy"
-                src="/images/profile.webp"
-                alt="Ankush Gupta"
+                src="{{ post.image }}"
+                class="card-img-top rounded-top"
+                alt="{{ post.title }}"
               />
+              {% endif %}
+              <div class="card-body">
+                <h6 class="card-title fw-semibold">{{ post.title }}</h6>
+                <p class="card-text small text-muted">
+                  {{ post.excerpt | strip_html | truncate: 100 }}
+                </p>
+              </div>
             </div>
-
-            <div class="post__meta-bottom">
-              <div class="post__author">Ankush Gupta</div>
-              <time
-                class="post__date"
-                datetime="{{ page.date | date_to_xmlschema }}"
-                >{{ page.date | date_to_string }}</time
-              >
-            </div>
-          </div>
+          </a>
         </div>
+        {% endfor %}
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- begin post -->
-<div class="container animate">
-  <article class="post">
-    <div class="post__content">{{ content }}</div>
-
-    {% if page.description %}
-    <meta name="description" content="{{ page.description }}" />
-    {% endif %}
-  </article>
-</div>
-<!-- end post -->
-
-<!-- You May Also Like -->
-<div class="container py-5">
-  <div class="section__info">
-    <div class="section__head">
-      <h2 class="section__title">Recent Blogs</h2>
-      <a class="section__link" href="/blog"
-        >View all <i class="fa-solid fa-arrow-right"></i
-      ></a>
-    </div>
-  </div>
-  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-    {% for post in site.posts limit:4%} {% unless post.url == page.url %}
-    <div class="col">
-      <div class="card bg-dark-card border-0 rounded-4 shadow-lg template-card">
-        <img
-          src="{{ post.image | relative_url }}"
-          class="card-img-top rounded-3"
-          alt="{{ post.title }}"
-        />
-        <div class="card-body">
-          {% if post.categories and post.categories.size > 0 %}
-          <div class="post-categories mb-2">
-            {% for category in post.categories %}
-            <a
-              href="{{ site.baseurl }}/category/{{ category | downcase }}"
-              class="post-categories__category"
-              >{{ category }}</a
-            >
-            {% endfor %}
-          </div>
-          {% endif %}
-          <h5 class="card-title fw-bold">{{ post.title }}</h5>
-          <p class="card-text">
-            {{ post.description | strip_html | truncate: 150 }}
-          </p>
-          <a
-            href="{{ site.baseurl }}{{ post.url }}"
-            class="btn btn-primary rounded-pill px-4 mt-2"
-            >View Details</a
-          >
-        </div>
-      </div>
-    </div>
-    {% endunless %} {% endfor %}
+    </section>
   </div>
 </div>

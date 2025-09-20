@@ -1,0 +1,110 @@
+---
+layout: default
+title: Search
+permalink: /search/
+---
+
+<section class="container py-5">
+  <div class="row justify-content-center mb-4">
+    <div class="col-12 col-md-10">
+      <form
+        id="search-form"
+        action="{{ '/search/' | relative_url }}"
+        method="get"
+        class="row g-2 justify-content-center"
+      >
+        <div class="col-10 col-md-6">
+          <input
+            type="text"
+            name="q"
+            class="form-control form-control-lg rounded-pill"
+            placeholder="Search blog posts..."
+          />
+        </div>
+        <div class="col-auto">
+          <button
+            class="btn btn-lg btn-primary rounded-pill px-4"
+            type="submit"
+          >
+            <i class="fa-solid fa-magnifying-glass me-1"></i> Search
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="results" class="row g-4"></div>
+  <div
+    id="no-results"
+    class="text-center text-muted mt-4"
+    style="display: none"
+  >
+    No posts found for your search.
+  </div>
+</section>
+
+<script>
+  (function () {
+    // get query param q
+    const params = new URLSearchParams(window.location.search);
+    const q = (params.get("q") || "").trim().toLowerCase();
+
+    // set input value to show the query
+    const input = document.getElementById("search-input");
+    if (input) input.value = params.get("q") || "";
+
+    // if no query, show a hint and exit
+    if (!q) {
+      document.getElementById("results").innerHTML =
+        '<div class="col-12 text-center text-muted">Enter a search term to find posts by title.</div>';
+      return;
+    }
+
+    // fetch the Jekyll-generated index
+    fetch('{{ "/search.json" | relative_url }}')
+      .then((r) => r.json())
+      .then((data) => {
+        // filter by title only (case-insensitive)
+        const results = data.filter((post) =>
+          (post.title || "").toLowerCase().includes(q)
+        );
+
+        const container = document.getElementById("results");
+        const noResults = document.getElementById("no-results");
+        container.innerHTML = "";
+
+        if (!results.length) {
+          noResults.style.display = "block";
+          return;
+        } else {
+          noResults.style.display = "none";
+        }
+
+        // render matched posts (limit if you want)
+        results.slice(0, 50).forEach((post) => {
+          const col = document.createElement("div");
+          col.className = "col-lg-6";
+
+          col.innerHTML = `
+          <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-body d-flex align-items-start">
+              <div class="flex-grow-1">
+                <h5 class="mb-1"><a href="${
+                  post.url
+                }" class="text-decoration-none">${post.title}</a></h5>
+                <p class="mb-1 text-muted small">${post.excerpt || ""}</p>
+                <small class="text-muted">${post.date}</small>
+              </div>
+            </div>
+          </div>
+        `;
+          container.appendChild(col);
+        });
+      })
+      .catch((err) => {
+        console.error("Search error:", err);
+        document.getElementById("results").innerHTML =
+          '<div class="col-12 text-danger">Search failed — check console.</div>';
+      });
+  })();
+</script>

@@ -20,59 +20,56 @@ canonical: "{{ site.url }}{{ site.baseurl }}/contact"
         <div class="card shadow-sm border-0 rounded-4">
           <div class="card-body p-4">
             <h4 class="fw-bold mb-4">Send us a message</h4>
+            <!-- Netlify hidden input -->
             <form
               name="contact"
               method="POST"
               data-netlify="true"
-              class="needs-validation"
-              novalidate
+              action="/thank-you"
             >
-              <!-- Netlify hidden input -->
-              <form name="contact" method="POST" data-netlify="true" action="/thank-you">
-  <!-- required hidden field -->
-  <input type="hidden" name="form-name" value="contact" />
+              <!-- required hidden field -->
+              <input type="hidden" name="form-name" value="contact" />
 
-  <div class="mb-3">
-    <label for="name" class="form-label">Your Name</label>
-    <input
-      type="text"
-      id="name"
-      name="name"
-      class="form-control"
-      placeholder="Enter your name"
-      required
-    />
-  </div>
+              <div class="mb-3">
+                <label for="name" class="form-label">Your Name</label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="form-control"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
 
-  <div class="mb-3">
-    <label for="email" class="form-label">Email Address</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      class="form-control"
-      placeholder="you@example.com"
-      required
-    />
-  </div>
+              <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
 
-  <div class="mb-3">
-    <label for="message" class="form-label">Message</label>
-    <textarea
-      id="message"
-      name="message"
-      rows="5"
-      class="form-control"
-      placeholder="Type your message here..."
-      required
-    ></textarea>
-  </div>
+              <div class="mb-3">
+                <label for="message" class="form-label">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="5"
+                  class="form-control"
+                  placeholder="Type your message here..."
+                  required
+                ></textarea>
+              </div>
 
-  <button type="submit" class="btn btn-primary rounded-pill px-4">
-    Send Message
-  </button>
-</form>
-
+              <button type="submit" class="btn btn-primary rounded-pill px-4">
+                Send Message
+              </button>
+            </form>
           </div>
         </div>
       </div>
@@ -81,9 +78,13 @@ canonical: "{{ site.url }}{{ site.baseurl }}/contact"
       <div class="col-lg-5">
         <div class="card shadow-sm border-0 rounded-4 p-4 mb-4">
           <h5 class="fw-bold mb-3">📧 Email</h5>
-          <p><a href="mailto:guptankush1@gmail.com">guptankush1@gmail.com</a></p>
+          <p>
+            <a href="mailto:guptankush1@gmail.com">guptankush1@gmail.com</a>
+          </p>
 
-          <h5 class="fw-bold mb-3"><i class="fa-brands fa-whatsapp"></i> WhatsApp</h5>
+          <h5 class="fw-bold mb-3">
+            <i class="fa-brands fa-whatsapp"></i> WhatsApp
+          </h5>
           <p>
             <a href="https://wa.me/8684997801" target="_blank"
               >+91 8684997801</a

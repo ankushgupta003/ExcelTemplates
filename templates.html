@@ -5,10 +5,33 @@ description: Discover a comprehensive collection of Google Sheets templates for 
 ---
 
 <div class="container py-5" id="templates">
-  <h1 class="display-4 fw-bold text-center mb-5">Top Templates</h1>
-  <div class="row g-4">
-    {% for template in site.templates %}
-    <div class="col-6 col-lg-3">
+  <!-- Page Heading -->
+  <div class="text-center mb-4">
+    <h1 class="display-4 fw-bold">Top Templates</h1>
+    <p class="lead text-muted">
+      Search and explore our collection of Google Sheets templates.
+    </p>
+  </div>
+
+  <!-- Search Input -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-6">
+      <input
+        type="text"
+        id="templateSearch"
+        class="form-control rounded-pill"
+        placeholder="Search templates by title..."
+        onkeyup="filterTemplates()"
+      />
+    </div>
+  </div>
+
+  <!-- Templates Grid -->
+  <div class="row g-4 mt-5" id="templatesGrid">
+    {% for template in site.templates %} {% assign discount = template.old-price
+    | minus: template.price %} {% assign discount_percent = discount | times:
+    100 | divided_by: template.old-price | round %}
+    <div class="col-lg-3 template-card">
       <div
         class="card bg-dark-card border-0 rounded-4 shadow-lg h-100 blog-card"
       >
@@ -18,16 +41,24 @@ description: Discover a comprehensive collection of Google Sheets templates for 
           alt="{{ template.title }} Template"
         />
         <div class="card-body d-flex flex-column">
-          <h5 class="card-title fw-bold">{{ template.title }}</h5>
+          <h5 class="card-title fw-bold template-title">
+            {{ template.title }}
+          </h5>
           <p class="card-text d-none d-md-block">
             {{ template.description | strip_html | truncate: 100 }}
           </p>
-          <p class="fw-bold">
-            <span class="text-muted" style="text-decoration: line-through"
-              >Rs.{{ template.old-price }}</span
+
+          <!-- Price with discount -->
+          <p class="mt-auto">
+            <span class="text-muted" style="text-decoration: line-through">
+              Rs.{{ template.old-price }}
+            </span>
+            <span class="mx-2 fw-bold">Rs.{{ template.price }}</span>
+            <span class="text-danger ms-2 fw-bold"
+              >({{ discount_percent }}% off)</span
             >
-            Rs.{{ template.price }}
           </p>
+
           <a
             href="{{ site.baseurl }}{{ template.url }}"
             class="btn btn-primary rounded-pill mt-2"
@@ -39,3 +70,22 @@ description: Discover a comprehensive collection of Google Sheets templates for 
     {% endfor %}
   </div>
 </div>
+
+<!-- Search Script -->
+<script>
+  function filterTemplates() {
+    const input = document.getElementById("templateSearch").value.toLowerCase();
+    const templates = document.querySelectorAll(".template-card");
+
+    templates.forEach((card) => {
+      const title = card
+        .querySelector(".template-title")
+        .textContent.toLowerCase();
+      if (title.includes(input)) {
+        card.style.display = "";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  }
+</script>
